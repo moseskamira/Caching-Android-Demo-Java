@@ -27,4 +27,6 @@ ext{
     retrofit_version = '2.6.2'
     retrofit2_adapter_version = '2.5.0'
     retrofit_converter_version = '2.6.2'
+    rxandroid_version = '2.1.1'
+    rxjava_version = '2.2.10'
 }

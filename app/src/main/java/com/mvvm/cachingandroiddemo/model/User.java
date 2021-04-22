@@ -1,5 +1,7 @@
 package com.mvvm.cachingandroiddemo.model;
 
+import androidx.annotation.NonNull;
+
 public class User {
     String name;
     String username;
@@ -49,7 +51,7 @@ public class User {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", username='" + username + '\'' +

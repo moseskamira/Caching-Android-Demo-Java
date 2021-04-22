@@ -1,5 +1,7 @@
 package com.mvvm.cachingandroiddemo.model;
 
+import androidx.annotation.NonNull;
+
 public class UserAddress {
     String street;
     String suite;
@@ -46,7 +48,7 @@ public class UserAddress {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return "UserAddress{" +
                 "street='" + street + '\'' +
                 ", suite='" + suite + '\'' +

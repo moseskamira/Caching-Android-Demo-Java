@@ -1,9 +1,8 @@
-package com.mvvm.cachingandroiddemo;
+package com.mvvm.cachingandroiddemo.viewModel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.mvvm.cachingandroiddemo.Service.RetrofitService;
 import com.mvvm.cachingandroiddemo.Service.RetrofitServiceApi;
@@ -15,26 +14,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class UserViewModel extends ViewModel {
     private RetrofitServiceApi retrofitServiceApi;
+    private MutableLiveData<List<User>> usersList;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public UserViewModel() {
+        usersList = new MutableLiveData<>();
         retrofitServiceApi = RetrofitService.getRetrofitService().getRetrofitServiceApi();
-        loadUsers();
+
     }
 
-    private void loadUsers() {
+    public LiveData<List<User>> returnAllUsers() {
         retrofitServiceApi.getAllUsers().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.body() != null) {
-                    for (User user : response.body()) {
-                        Log.d("USERADDRESS", user.getAddress().toString());
-                    }
+                    usersList.postValue(response.body());
+
+                }else {
+                    usersList.postValue(null);
                 }
             }
 
@@ -43,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
+        return usersList;
     }
+
+
 }

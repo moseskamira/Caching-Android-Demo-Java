@@ -1,5 +1,7 @@
 package com.mvvm.cachingandroiddemo.model;
 
+import androidx.annotation.NonNull;
+
 public class MyPhoto {
     String title;
     String url;
@@ -39,7 +41,7 @@ public class MyPhoto {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return "MyPhoto{" +
                 "title='" + title + '\'' +
                 ", url='" + url + '\'' +
