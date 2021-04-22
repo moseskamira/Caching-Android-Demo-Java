@@ -15,4 +15,5 @@ public interface RetrofitServiceApi {
 
     @GET("users")
     Call<List<User>> getAllUsers();
+
 }
